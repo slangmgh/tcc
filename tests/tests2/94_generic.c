@@ -41,11 +41,14 @@ int main()
 	printf("%d\n", i);
 	i = _Generic(17, int :1, int **:2);
 	printf("%d\n", i);
-	i = _Generic(17L, int :1, long :2);
+	i = _Generic(17L, int :1, long :2, long long : 3);
 	printf("%d\n", i);
-	i = _Generic("17, io", const char *:1, char *:3, const int :2);
+	i = _Generic("17, io", char *: 3, const char *: 1);
 	printf("%d\n", i);
-	i = _Generic(ti, const char *:1, char *:3, const int :2);
+	i = _Generic(ti, const unsigned char *:1, const char *:4, char *:3,
+		     const signed char *:2);
 	printf("%d\n", i);
+	printf("%s\n", _Generic((i + 2L), long: "long", int: "int",
+				long long: "long long"));
 	return 0;
 }
